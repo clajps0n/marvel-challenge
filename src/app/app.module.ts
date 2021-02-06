@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -13,6 +14,8 @@ import { ComicDetailComponent } from './comic-detail/comic-detail.component';
 import { FavouriteListComponent } from './favourite-list/favourite-list.component';
 import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MarvelService } from './services/marvel.service'
 
 @NgModule({
   declarations: [
@@ -28,11 +31,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    MarvelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
