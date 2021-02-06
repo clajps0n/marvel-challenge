@@ -1,9 +1,11 @@
 <div fxFlexAlign="center center">
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-        <input type="text" ngModel name="character" placeholder="Search character...">
-        <span class="search-icon">
-            <img src="../../assets/icons/search.png" alt="Search">
-        </span>
+        <mat-form-field class="form-field">
+            <input matInput type="text" ngModel name="character" placeholder="Search character...">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" class="search-button">
+                <img src="../../assets/icons/search.png" alt="Search">
+              </button>
+        </mat-form-field>
     </form>
 </div>
 
