@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MaterialModule } from './material.module'
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -10,6 +11,7 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
 import { ComicDetailComponent } from './comic-detail/comic-detail.component';
 import { FavouriteListComponent } from './favourite-list/favourite-list.component';
 import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.co
     FavouriteDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
