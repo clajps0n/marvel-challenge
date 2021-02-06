@@ -1,3 +1,19 @@
-<app-search-bar></app-search-bar>
-<app-character-list></app-character-list>
-<app-favourite-list></app-favourite-list>
+<div fxLayout="row" fxLayout fxLayoutAlign="none center" class="header-container">
+    <div fxFlex="40">
+        <div fxLayout fxLayoutAlign="start center">
+            <img src="../assets/icons/logo.svg" alt="Marvel" class="header-logo">
+        </div>
+    </div>
+    <div fxFlex="60">
+        <div fxLayout fxLayoutAlign="start center">
+            <app-search-bar></app-search-bar>
+        </div>
+    </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayout>
+        <app-character-list fxFlex="70" fxFlex.xs="100" class="character-list-container"></app-character-list>
+        <app-favourite-list fxFlex="30" fxFlex.xs="100" class="favourite-list-container"></app-favourite-list>
+</div>
+<div class="footer-container" fxLayout="row" fxLayout>
+    <p>footer</p>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,4 +13,7 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(form: Form){
+
+  }
 }
