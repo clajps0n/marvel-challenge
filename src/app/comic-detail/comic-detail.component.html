@@ -1,1 +1,32 @@
-<p>comic-detail works!</p>
+<div class="comic-card">
+    <div fxLayout="column" fxLayoutAlign="space-between">
+        <div fxLayoutAlign="end">
+            <button mat-button mat-dialog-close>
+                <img src="../../assets/icons/btn-close.png" alt="Close">
+            </button>
+        </div>
+        <div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutGap="20" class="data-container">
+            <div fxFlex fxFlex.lg="40" class="image-container">
+                <img src={{comic.image}} alt="Photo of a Shiba Inu" class="comic-image">
+            </div>
+            <div fxFlex fxFlex.lg="60">
+                <div fxLayout="column" fxLayoutAlign="space-between" class="comic-data">
+                    <div>
+                        <h1 class="character-name-title">{{comic.title | uppercase}}</h1>
+                        <p class="gray-font">{{comic.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="50"  fxLayoutAlign="center center" class="toggle-favourite">
+                <img src="../../assets/icons/btn-favourites-default.png" alt="Add">
+                <h1>ADD TO FAVOURITES</h1>
+            </div>
+            <div fxFlex="50"  fxLayoutAlign="center center" class="comic-price">
+                <img src="../../assets/icons/shopping-cart-primary.png" alt="Buy">
+                <h1>BUY FOR ${{comic.price}}</h1>
+            </div>
+        </div>
+    </div>
+</div>

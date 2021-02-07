@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CharacterDetailComponent } from '../character-detail/character-detail.component';
+import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Character } from '../models/character.model';
 
 @Component({
@@ -16,6 +17,16 @@ export class CharacterOverviewComponent implements OnInit {
   openDetailDialog() {
     const dialogRef = this.dialog.open(CharacterDetailComponent, {
       data: this.character
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openComicDialog(comicId: number) {
+    const dialogRef = this.dialog.open(ComicDetailComponent, {
+      data: comicId
     });
 
     dialogRef.afterClosed().subscribe(result => {

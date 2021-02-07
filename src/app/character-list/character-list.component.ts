@@ -30,7 +30,14 @@ export class CharacterListComponent implements OnInit, DoCheck {
           description: e.description,
           image: e.thumbnail.path+'.'+e.thumbnail.extension,
           series: e.series.items.length,
-          stories: e.stories.items.length
+          stories: e.stories.items.length,
+          comics: e.comics.items.map((c) => {
+            let uriArr = c.resourceURI.split('/')
+            return {
+              id: uriArr[uriArr.length - 1],
+              title: c.name
+            }
+          })
         }
       })
       

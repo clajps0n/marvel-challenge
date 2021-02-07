@@ -18,8 +18,9 @@
   <div fxLayout="row">
     <h3 class="gray-font related-comics-title">Related comics</h3>
   </div>
-  <div fxLayout="row">
-    <div fxFlex="50"><p class="gray-font">Black Widow (2020) #4 and more</p></div>
-    <div fxFlex="50"><p class="gray-font">Black Widow (2020) #5</p></div>
+  <div fxLayout="row wrap" class="related-comic-list">
+    <div *ngFor="let comic of character.comics" class="related-comic-link" (click)="openComicDialog(comic.id)">
+      <p class="gray-font">{{comic.title}}</p>
+    </div>
   </div>
 </div>
