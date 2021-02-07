@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CharacterDetailComponent } from '../character-detail/character-detail.component';
 import { Character } from '../models/character.model';
 
 @Component({
@@ -9,7 +11,17 @@ import { Character } from '../models/character.model';
 export class CharacterOverviewComponent implements OnInit {
   @Input() character: Character
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
+  openDetailDialog() {
+    const dialogRef = this.dialog.open(CharacterDetailComponent, {
+      data: this.character
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   ngOnInit(): void {
   }

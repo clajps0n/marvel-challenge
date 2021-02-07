@@ -13,7 +13,7 @@ export class CharacterListComponent implements OnInit, DoCheck {
   currentCharacterList: Array<Character>
 
   listLength = 10;
-  pageSize = 3;
+  pageSize = 5;
   pageSizeOptions: number[] = [1,2,5];
   pageEvent: PageEvent;
   oldPageIndex: number
@@ -28,7 +28,9 @@ export class CharacterListComponent implements OnInit, DoCheck {
           id: e.id,
           name: e.name,
           description: e.description,
-          image: e.thumbnail.path+'.'+e.thumbnail.extension
+          image: e.thumbnail.path+'.'+e.thumbnail.extension,
+          series: e.series.items.length,
+          stories: e.stories.items.length
         }
       })
       
