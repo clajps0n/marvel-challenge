@@ -1,3 +1,10 @@
 <div fxLayout="row wrap" fxLayoutAlign="center">
-    <app-character-overview *ngFor="let character of characterList" [character]="character"></app-character-overview>
+    <app-character-overview *ngFor="let character of currentCharacterList" [character]="character"></app-character-overview>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
+    <mat-paginator [length]="listLength"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event">
+    </mat-paginator>
 </div>
