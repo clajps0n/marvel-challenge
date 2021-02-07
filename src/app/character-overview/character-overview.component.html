@@ -1,17 +1,25 @@
-<mat-card class="character-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{character.name}}</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src={{character.image}} alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        {{character.description}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="character-card" fxLayout="column">
+  <div fxLayout="row">
+    <div fxFlex>
+      <img src={{character.image}} alt="Photo of a Shiba Inu" class="character-image">
+    </div>
+    <div fxFlex>
+      <div fxLayout="column" fxLayoutAlign="space-between" class="character-data">
+        <div>
+          <h2 class="character-name-title">{{character.name | uppercase}}</h2>
+          <p class="gray-font">{{character.description}}</p>
+        </div>
+        <div>
+          <button class="view-more-button"><b>VIEW MORE</b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <h3 class="gray-font related-comics-title">Related comics</h3>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="50"><p class="gray-font">Black Widow (2020) #4 and more</p></div>
+    <div fxFlex="50"><p class="gray-font">Black Widow (2020) #5</p></div>
+  </div>
+</div>
