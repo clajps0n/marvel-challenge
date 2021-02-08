@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { RemoveCurrenComic, SetCurrenComic } from '../redux/comic.actions';
 import { Comic } from '../models/comic.model';
+import * as fromCharacter from '../redux/character.reducer'
 import * as fromComic from '../redux/comic.reducer'
 import * as fromFavourites from '../redux/favourites.reducer'
 import { AddFavouriteComic, RemoveFavouriteComic } from '../redux/favourites.actions';
+import { filter, isEmpty, map } from 'rxjs/operators';
+import { SetCharacterList } from '../redux/character.actions';
+import { Character } from '../models/character.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarvelService {
+  favsChange = new Subject<boolean>();
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   
   private urlBase = 'http://gateway.marvel.com/v1/public'
   
-  private nameStartsWith = 'Black'
   private urlAuth = {
     ts: 1,
     apikey: 'ba12ffa459a4fb2e5ab1b97885d7b367',
@@ -32,9 +37,33 @@ export class MarvelService {
     private store: Store
   ) { }
 
-  getCharacterList(): Observable<any>{
-    return this.http.get(`${this.urlBase}/characters${this.auth}&nameStartsWith=${this.nameStartsWith}`)
+  dispatchCharacterList(nameStartsWith: string): void{
+    this.http.get(`${this.urlBase}/characters${this.auth}${nameStartsWith}`).subscribe((res: any) => {
+      let fullCharacterList = res.data.results.map((e: any) => {
+        return <Character>{
+          id: e.id,
+          name: e.name,
+          description: e.description || 'Without description',
+          image: e.thumbnail.path+'.'+e.thumbnail.extension,
+          series: e.series.items.length,
+          stories: e.stories.items.length,
+          comics: e.comics.items.map((c) => {
+            let uriArr = c.resourceURI.split('/')
+            return {
+              id: uriArr[uriArr.length - 1],
+              title: c.name
+            }
+          }),
+        }
+      })
+      this.store.dispatch(new SetCharacterList(fullCharacterList))
+    })
   }
+
+  getDispatchedCharacterList(nameStartsWith: string): Observable<Character[]>{
+    return this.store.select(fromCharacter.getCharacterStateSelector)
+  }
+
 
   getComicList(comicId: number): Observable<any>{
     return this.http.get(`${this.urlBase}/comics/${comicId}${this.auth}`)
@@ -62,6 +91,7 @@ export class MarvelService {
   }
 
   dispatchFavouriteComic(comic: Comic): void {
+    this.favsChange.next(true)
     this.store.dispatch(new AddFavouriteComic(comic))
   }
 
@@ -69,7 +99,15 @@ export class MarvelService {
     return this.store.select(fromFavourites.getFavouritesStateSelector)
   }
 
+  getIfComicInFavourites(comicId: number): Observable<Comic[]> {
+    return this.store.select(fromFavourites.getFavouritesStateSelector)
+  }
+
   removeDispatchedFavourite(comicId: number): void {
     this.store.dispatch(new RemoveFavouriteComic(comicId))
+  }
+
+  searchCharacterByName(name: string) : void{
+    this.dispatchCharacterList(`&nameStartsWith=${name}`)
   }
 }

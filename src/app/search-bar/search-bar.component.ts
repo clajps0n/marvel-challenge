@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Form, FormGroup } from '@angular/forms';
+import { MarvelService } from '../services/marvel.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,12 +9,14 @@ import { Form } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private marvelService: MarvelService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form: Form){
-
+  onSubmit(form: FormGroup){
+    this.marvelService.searchCharacterByName(form.value.character)
   }
 }

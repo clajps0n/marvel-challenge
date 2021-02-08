@@ -4,6 +4,7 @@ import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -14,11 +15,11 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
 import { ComicDetailComponent } from './comic-detail/comic-detail.component';
 import { FavouriteListComponent } from './favourite-list/favourite-list.component';
 import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 
 import { MarvelService } from './services/marvel.service';
-import { appReducer } from './app.reducer';
 
+import { appReducer } from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { appReducer } from './app.reducer';
     CharacterDetailComponent,
     ComicDetailComponent,
     FavouriteListComponent,
-    FavouriteDetailComponent
+    FavouriteDetailComponent,
+    InfoDialogComponent
   ],
   imports: [
     BrowserModule,
