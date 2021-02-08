@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { addToFavourites, removeFromFavourites } from "../app.util";
 import { Comic } from "../models/comic.model";
 import * as favourites from './favourites.actions'
 
@@ -15,12 +16,12 @@ export function favouritesReducer(state: FavouritesState = initState, action: fa
         case favourites.actionTypes.ADD_FAVOURITE_COMIC:
             return {
                 ...state,
-                favouriteList: state.favouriteList.concat(action.payload)
+                favouriteList: addToFavourites(state.favouriteList, action.payload)
             }
         case favourites.actionTypes.REM_FAVOURITE_COMIC:
             return {
                 ...state,
-                favouriteList: state.favouriteList.filter(e => e.id != action.payload.id)
+                favouriteList: removeFromFavourites(state.favouriteList, action.payload)
             }
         default:
             return state

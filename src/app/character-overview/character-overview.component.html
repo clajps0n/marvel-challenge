@@ -22,5 +22,8 @@
     <div *ngFor="let comic of character.comics" class="related-comic-link" (click)="openComicDialog(comic.id)">
       <p class="gray-font">{{comic.title}}</p>
     </div>
+    <div *ngIf="character.comics.length==0">
+      <p class="gray-font">No related comics found X(</p>
+    </div>
   </div>
 </div>

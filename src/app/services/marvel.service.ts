@@ -45,7 +45,7 @@ export class MarvelService {
       let comic = <Comic>{
         id: res.data.results[0].id,
         title: res.data.results[0].title,
-        description: res.data.results[0].description,
+        description: res.data.results[0].description || 'Without description',
         image: res.data.results[0].thumbnail.path+'.'+res.data.results[0].thumbnail.extension,
         price: res.data.results[0].prices[0].price
       }
@@ -69,7 +69,7 @@ export class MarvelService {
     return this.store.select(fromFavourites.getFavouritesStateSelector)
   }
 
-  removeDispatchedFavourite(comic: Comic): void {
-    this.store.dispatch(new RemoveFavouriteComic(comic))
+  removeDispatchedFavourite(comicId: number): void {
+    this.store.dispatch(new RemoveFavouriteComic(comicId))
   }
 }

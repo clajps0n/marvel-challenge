@@ -13,7 +13,7 @@ export class AddFavouriteComic implements Action {
 
 export class RemoveFavouriteComic implements Action {
     readonly type = actionTypes.REM_FAVOURITE_COMIC
-    constructor(public payload: Comic){}
+    constructor(public payload: number){}
 }
 
 export type FavouritesAction = AddFavouriteComic | RemoveFavouriteComic

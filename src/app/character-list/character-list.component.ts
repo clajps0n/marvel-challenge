@@ -27,7 +27,7 @@ export class CharacterListComponent implements OnInit, DoCheck {
         return {
           id: e.id,
           name: e.name,
-          description: e.description,
+          description: e.description || 'Without description',
           image: e.thumbnail.path+'.'+e.thumbnail.extension,
           series: e.series.items.length,
           stories: e.stories.items.length,
@@ -37,7 +37,7 @@ export class CharacterListComponent implements OnInit, DoCheck {
               id: uriArr[uriArr.length - 1],
               title: c.name
             }
-          })
+          }),
         }
       })
       

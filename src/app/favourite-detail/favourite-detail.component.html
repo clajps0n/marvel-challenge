@@ -1,8 +1,8 @@
 <div class="favourite-container">
     <div fxLayoutAlign="end">
-        <button mat-dialog-close>
-            <img src="../../assets/icons/btn-close.png" alt="Close">
-        </button>
+        <div (click)="removeFromFavourites(comic.id)">
+            <img src="../../assets/icons/btn-delete.png" alt="Close" class="remove-image">
+        </div>
     </div>
     <div fxLayoutAlign="center">
         <div class="image-container">

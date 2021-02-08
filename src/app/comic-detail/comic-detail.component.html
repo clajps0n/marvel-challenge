@@ -2,7 +2,7 @@
     <div *ngIf="(comic | async) as comic" fxLayout="column" fxLayoutAlign="space-between">
         <div fxLayoutAlign="end">
             <button mat-dialog-close>
-                <img src="../../assets/icons/btn-close.png" alt="Close">
+                <img src="../../assets/icons/btn-close.png" alt="Close" class="close-image">
             </button>
         </div>
         <div *ngIf="loading | async" class="spinner-container">
