@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { RemoveCurrenComic, SetCurrenComic } from '../redux/comic.actions';
 import { Comic } from '../models/comic.model';
 import * as fromComic from '../redux/comic.reducer'
+import * as fromFavourites from '../redux/favourites.reducer'
+import { AddFavouriteComic, RemoveFavouriteComic } from '../redux/favourites.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class MarvelService {
   
   private urlBase = 'http://gateway.marvel.com/v1/public'
   
-  private nameStartsWith = 'Black Widow'
+  private nameStartsWith = 'Black'
   private urlAuth = {
     ts: 1,
     apikey: 'ba12ffa459a4fb2e5ab1b97885d7b367',
@@ -57,5 +59,17 @@ export class MarvelService {
 
   removeDispatchedComic(): void {
     this.store.dispatch(new RemoveCurrenComic())
+  }
+
+  dispatchFavouriteComic(comic: Comic): void {
+    this.store.dispatch(new AddFavouriteComic(comic))
+  }
+
+  getDispatchedFavourites(): Observable<Array<Comic>> {
+    return this.store.select(fromFavourites.getFavouritesStateSelector)
+  }
+
+  removeDispatchedFavourite(comic: Comic): void {
+    this.store.dispatch(new RemoveFavouriteComic(comic))
   }
 }

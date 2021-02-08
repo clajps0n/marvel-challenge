@@ -17,11 +17,14 @@ export class ComicDetailComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public comicId: number,
     private marvelService: MarvelService
-  )
-  { }
+  ) { }
 
   ngOnInit(): void {
     this.comic = this.marvelService.getDispatchedComic()
+  }
+
+  addFavouriteComic(comic: Comic){
+    this.marvelService.dispatchFavouriteComic(comic)
   }
 
   ngOnDestroy(): void {

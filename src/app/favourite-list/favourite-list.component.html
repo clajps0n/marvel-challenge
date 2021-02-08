@@ -1,1 +1,3 @@
-<p>favourite-list works!</p>
+<div class="favourite-list">
+    <app-favourite-detail *ngFor="let fav of favouriteList | async" [comic]="fav"></app-favourite-detail>
+</div>

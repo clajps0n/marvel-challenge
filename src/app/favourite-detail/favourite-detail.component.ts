@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Comic } from '../models/comic.model';
 
 @Component({
   selector: 'app-favourite-detail',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourite-detail.component.sass']
 })
 export class FavouriteDetailComponent implements OnInit {
+  @Input() comic: Comic
 
   constructor() { }
 

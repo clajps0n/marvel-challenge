@@ -1,1 +1,15 @@
-<p>favourite-detail works!</p>
+<div class="favourite-container">
+    <div fxLayoutAlign="end">
+        <button mat-dialog-close>
+            <img src="../../assets/icons/btn-close.png" alt="Close">
+        </button>
+    </div>
+    <div fxLayoutAlign="center">
+        <div class="image-container">
+            <img src="{{ comic.image }}" alt="Photo of a Shiba Inu" class="comic-image">
+        </div>
+    </div>
+    <div>
+        <h1>{{ comic.title }}</h1>
+    </div>
+</div>
