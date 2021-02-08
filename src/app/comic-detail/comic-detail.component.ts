@@ -1,6 +1,7 @@
 import { preserveWhitespacesDefault } from '@angular/compiler';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { Comic } from '../models/comic.model';
 import { MarvelService } from '../services/marvel.service';
 
@@ -9,8 +10,9 @@ import { MarvelService } from '../services/marvel.service';
   templateUrl: './comic-detail.component.html',
   styleUrls: ['./comic-detail.component.sass']
 })
-export class ComicDetailComponent implements OnInit {
-  comic: Comic
+export class ComicDetailComponent implements OnInit, OnDestroy {
+  comic: Observable<Comic>
+  loading: Observable<boolean>
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public comicId: number,
@@ -19,15 +21,10 @@ export class ComicDetailComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.marvelService.getComicList(this.comicId).subscribe((res) => {
-      this.comic = <Comic>{
-        id: res.data.results[0].id,
-        title: res.data.results[0].title,
-        description: res.data.results[0].description,
-        image: res.data.results[0].thumbnail.path+'.'+res.data.results[0].thumbnail.extension,
-        price: res.data.results[0].prices[0].price
-      }
-    })
+    this.comic = this.marvelService.getDispatchedComic()
   }
 
+  ngOnDestroy(): void {
+    this.marvelService.removeDispatchedComic()
+  }
 }

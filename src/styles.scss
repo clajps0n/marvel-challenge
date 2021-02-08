@@ -5,6 +5,10 @@ html, body {
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+button:focus { 
+    outline: none !important;
+}
+
 .mat-dialog-container{
     padding: 0px !important;
 }

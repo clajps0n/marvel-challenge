@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CharacterDetailComponent } from '../character-detail/character-detail.component';
 import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Character } from '../models/character.model';
+import { MarvelService } from '../services/marvel.service';
 
 @Component({
   selector: 'app-character-overview',
@@ -12,7 +13,13 @@ import { Character } from '../models/character.model';
 export class CharacterOverviewComponent implements OnInit {
   @Input() character: Character
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    private marvelService: MarvelService,
+    public dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {
+  }
 
   openDetailDialog() {
     const dialogRef = this.dialog.open(CharacterDetailComponent, {
@@ -25,16 +32,13 @@ export class CharacterOverviewComponent implements OnInit {
   }
 
   openComicDialog(comicId: number) {
+    this.marvelService.dispatchComicById(comicId)
     const dialogRef = this.dialog.open(ComicDetailComponent, {
       data: comicId
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(() => {
+      console.log(`Dialog closed`);
     });
   }
-
-  ngOnInit(): void {
-  }
-
 }

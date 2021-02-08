@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatCardModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatCardModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

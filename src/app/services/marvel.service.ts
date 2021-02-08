@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { RemoveCurrenComic, SetCurrenComic } from '../redux/comic.actions';
+import { Comic } from '../models/comic.model';
+import * as fromComic from '../redux/comic.reducer'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +25,10 @@ export class MarvelService {
 
   private auth = `?ts=${this.urlAuth.ts}&apikey=${this.urlAuth.apikey}&hash=${this.urlAuth.hash}`
   
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private store: Store
+  ) { }
 
   getCharacterList(): Observable<any>{
     return this.http.get(`${this.urlBase}/characters${this.auth}&nameStartsWith=${this.nameStartsWith}`)
@@ -29,5 +36,26 @@ export class MarvelService {
 
   getComicList(comicId: number): Observable<any>{
     return this.http.get(`${this.urlBase}/comics/${comicId}${this.auth}`)
+  }
+
+  dispatchComicById(comicId: number): void{
+    this.http.get(`${this.urlBase}/comics/${comicId}${this.auth}`).subscribe((res: any) => {
+      let comic = <Comic>{
+        id: res.data.results[0].id,
+        title: res.data.results[0].title,
+        description: res.data.results[0].description,
+        image: res.data.results[0].thumbnail.path+'.'+res.data.results[0].thumbnail.extension,
+        price: res.data.results[0].prices[0].price
+      }
+      this.store.dispatch(new SetCurrenComic(comic))
+    })
+  }
+
+  getDispatchedComic(): Observable<Comic> {
+    return this.store.select(fromComic.getComicStateSelector)
+  }
+
+  removeDispatchedComic(): void {
+    this.store.dispatch(new RemoveCurrenComic())
   }
 }

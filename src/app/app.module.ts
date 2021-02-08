@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -15,7 +16,9 @@ import { FavouriteListComponent } from './favourite-list/favourite-list.componen
 import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MarvelService } from './services/marvel.service'
+import { MarvelService } from './services/marvel.service';
+import { appReducer } from './app.reducer';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { MarvelService } from './services/marvel.service'
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot(appReducer)
   ],
   providers: [
     MarvelService
