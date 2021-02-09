@@ -30,7 +30,6 @@ export class CharacterListComponent implements OnInit, DoCheck {
     this.fullCharacterList.subscribe(list => {
       this.listLength = list.length
       this.currentCharacterList = list.slice(0,this.pageSize)
-      console.log(this.currentCharacterList)
     })
 
     this.oldPageIndex = 0
