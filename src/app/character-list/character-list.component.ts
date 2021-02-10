@@ -1,7 +1,9 @@
-import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Character } from '../models/character.model';
+import { Comic } from '../models/comic.model';
 import { MarvelService } from '../services/marvel.service';
 
 @Component({
@@ -9,10 +11,11 @@ import { MarvelService } from '../services/marvel.service';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.sass']
 })
-export class CharacterListComponent implements OnInit, DoCheck {
+export class CharacterListComponent implements OnInit, AfterContentInit, DoCheck {
   fullCharacterList: Observable<Array<Character>>
   currentCharacterList: Array<Character>
 
+  comicIds: Array<number>
   listLength = 10;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20];
@@ -33,6 +36,33 @@ export class CharacterListComponent implements OnInit, DoCheck {
     })
 
     this.oldPageIndex = 0
+  }
+
+  ngAfterContentInit(){
+    this.fullCharacterList
+    .pipe(
+      map(x => x.map(character => character.comics.map(comic => comic.id)))
+    ).subscribe(arr => {
+      this.comicIds = arr.reduce((acc, curr) => acc.concat(curr),[])
+    })
+  }
+
+  onGenerateRandomFavs(){
+    let randomIds = []
+    randomIds.push(this.comicIds[Math.floor(Math.random() * this.comicIds.length)])
+    randomIds.push(this.comicIds[Math.floor(Math.random() * this.comicIds.length)])
+    randomIds.push(this.comicIds[Math.floor(Math.random() * this.comicIds.length)])
+    
+    randomIds.forEach(id => {
+      if (id) {
+        this.marvelService.dispatchComicById(id)
+        this.marvelService.getDispatchedComic().subscribe(comic => {
+          if (comic.id) {
+            this.marvelService.dispatchFavouriteComic(comic)
+          }
+        })
+      }
+    })
   }
 
   ngDoCheck() {

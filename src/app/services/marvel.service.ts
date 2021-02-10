@@ -45,13 +45,11 @@ export class MarvelService {
           name: e.name,
           description: e.description || 'Without description',
           image: e.thumbnail.path+'.'+e.thumbnail.extension,
-          series: e.series.items.length,
-          stories: e.stories.items.length,
-          comics: e.comics.items.map((c) => {
-            let uriArr = c.resourceURI.split('/')
+          comics: e.comics.items.map((comic: any) => {
+            let uriArr = comic.resourceURI.split('/')
             return {
               id: uriArr[uriArr.length - 1],
-              title: c.name
+              title: comic.name
             }
           }),
         }

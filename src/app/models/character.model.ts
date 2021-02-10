@@ -5,7 +5,5 @@ export interface Character {
     name: string,
     description: string,
     image: string,
-    series: number,
-    stories: number,
     comics: Comic[]
 }
