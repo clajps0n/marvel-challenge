@@ -10,12 +10,17 @@ import { MarvelService } from '../services/marvel.service';
 })
 export class FavouriteListComponent implements OnInit {
   favouriteList: Observable<Array<Comic>>
+  favs: Comic[]
 
   constructor(
     private marvelService: MarvelService
   ) { }
 
   ngOnInit(): void {
+    this.favs = JSON.parse(localStorage.getItem('favourites'))
+    this.favs.forEach((comic: Comic) => {
+      this.marvelService.dispatchFavouriteComic(comic)
+    })
     this.favouriteList = this.marvelService.getDispatchedFavourites()
   }
 

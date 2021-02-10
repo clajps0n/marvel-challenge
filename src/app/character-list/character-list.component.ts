@@ -24,31 +24,31 @@ export class CharacterListComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.marvelService.dispatchCharacterList('')
-    
+
     this.fullCharacterList = this.marvelService.getDispatchedCharacterList('')
-      
+
     this.fullCharacterList.subscribe(list => {
       this.listLength = list.length
-      this.currentCharacterList = list.slice(0,this.pageSize)
+      this.currentCharacterList = list.slice(0, this.pageSize)
     })
 
     this.oldPageIndex = 0
-    }
+  }
 
   ngDoCheck() {
-    if(this.pageEvent && this.oldPageIndex != this.pageEvent.pageIndex){
+    if (this.pageEvent && this.oldPageIndex != this.pageEvent.pageIndex) {
       this.fullCharacterList.subscribe(list => {
         this.currentCharacterList = list.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageEvent.pageSize)
         this.oldPageIndex = this.pageEvent.pageIndex
-      }) 
-      
+      })
+
     }
 
-    if(this.pageEvent && this.pageEvent.pageSize != this.oldPageSize){
+    if (this.pageEvent && this.pageEvent.pageSize != this.oldPageSize) {
       this.fullCharacterList.subscribe(list => {
         this.currentCharacterList = list.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageEvent.pageSize)
         this.oldPageSize = this.pageEvent.pageSize
-      }) 
+      })
     }
   }
 }

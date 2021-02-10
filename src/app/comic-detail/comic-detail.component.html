@@ -24,8 +24,8 @@
         <div fxLayout="row">
             <div fxFlex="50"  fxLayoutAlign="center center" class="toggle-favourite" (click)="addFavouriteComic(comic)">
                 <img src="../../assets/icons/btn-favourites-default.png" alt="Add">
-                <h1>ADD TO FAVOURITES</h1>
-                <!--<h1 *ngIf="favs.includes(comic)">REMOVE FROM FAVOURITES</h1>-->
+                <h1 *ngIf="!isFavourite">ADD TO FAVOURITES</h1>
+                <h1 *ngIf="isFavourite">REMOVE FROM FAVOURITES</h1>
             </div>
             <div fxFlex="50"  fxLayoutAlign="center center" class="comic-price">
                 <img src="../../assets/icons/shopping-cart-primary.png" alt="Buy">

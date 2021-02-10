@@ -15,7 +15,7 @@ import { MarvelService } from '../services/marvel.service';
 export class ComicDetailComponent implements OnInit, OnDestroy {
   comic: Observable<Comic>
   favs: Comic[]
-  //subs: Subscription
+  isFavourite: boolean
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public comicId: number,
@@ -25,9 +25,8 @@ export class ComicDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.comic = this.marvelService.getDispatchedComic()
-    /*this.subs = this.marvelService.getDispatchedFavourites().subscribe(arr => {
-      this.favs = arr
-    })*/
+    this.favs = JSON.parse(localStorage.getItem('favourites'))
+    this.isFavourite = this.favs.map(e => e.id).includes(Number(this.comicId))
   }
 
   addFavouriteComic(comic: Comic){
