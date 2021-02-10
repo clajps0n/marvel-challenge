@@ -1,7 +1,7 @@
 .character-card
-    width: 430px
+    width: 450px
     height: auto
-    min-height: 500px
+    min-height: 200px
     margin: 20px
     padding: 10px
     background-color: white
@@ -29,8 +29,8 @@
 .character-data
     height: 100%
 
-.view-more-button
-    background: #EC1D24
+
+button
     width: 100px
     padding: 10px
     border-radius: 2px
@@ -39,6 +39,15 @@
     border: 0px
     cursor: pointer
 
+.view-more-button
+    background: #EC1D24
+    &:hover
+        background: #b41015
+
+.view-less-button
+    background: #373737
+    &:hover
+        background: #583d3d
 
 .left
     background-color: orange

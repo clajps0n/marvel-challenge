@@ -1,3 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="center" class="fav-list-header">
+    <img src="../../assets/icons/favourites.png" alt="Favourites" class="favs-title-icon">
+    <h1 class="fav-list-title">My favourites</h1>
+</div>
 <div class="favourite-list">
     <app-favourite-detail *ngFor="let fav of favouriteList | async" [comic]="fav"></app-favourite-detail>
 </div>

@@ -1,3 +1,16 @@
+<div class="character-list">
+    <div class="list-header" fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="row">
+            <img src="../../assets/icons/characters.png" alt="Characters">
+            <h1>Characters</h1>
+        </div>
+        <div>
+            <button class="random-favourites">
+                <b>RANDOM FAVOURITES</b>
+            </button>
+        </div>
+    </div>
+</div>
 <div fxLayout="row wrap" fxLayoutAlign="center" class="character-list">
     <app-character-overview *ngFor="let character of currentCharacterList" [character]="character"></app-character-overview>
 </div>

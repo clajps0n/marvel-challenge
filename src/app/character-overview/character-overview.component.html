@@ -10,20 +10,23 @@
           <p class="gray-font">{{character.description}}</p>
         </div>
         <div>
-          <button class="view-more-button" (click)="openDetailDialog()"><b>VIEW MORE</b></button>
+          <button *ngIf="!showComics" class="view-more-button" (click)="toggleShowComics()"><b>VIEW MORE</b></button>
+          <button *ngIf="showComics" class="view-less-button" (click)="toggleShowComics()"><b>VIEW LESS</b></button>
         </div>
       </div>
     </div>
   </div>
-  <div fxLayout="row">
-    <h3 class="gray-font related-comics-title">Related comics</h3>
-  </div>
-  <div fxLayout="row wrap" class="related-comic-list">
-    <div *ngFor="let comic of character.comics" class="related-comic-link" (click)="openComicDialog(comic.id)">
-      <p class="gray-font">{{comic.title}}</p>
+  <div *ngIf="showComics">
+    <div fxLayout="row">
+      <h3 class="gray-font related-comics-title">Related comics</h3>
     </div>
-    <div *ngIf="character.comics.length==0">
-      <p class="gray-font">No related comics found X(</p>
+    <div fxLayout="row wrap" class="related-comic-list">
+      <div *ngFor="let comic of character.comics" class="related-comic-link" (click)="openComicDialog(comic.id)">
+        <p class="gray-font">{{comic.title}}</p>
+      </div>
+      <div *ngIf="character.comics.length==0">
+        <p class="gray-font">No related comics found X(</p>
+      </div>
     </div>
   </div>
 </div>
