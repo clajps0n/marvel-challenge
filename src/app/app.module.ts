@@ -16,7 +16,10 @@ import { FavouriteListComponent } from './favourite-list/favourite-list.componen
 import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 
-import { MarvelService } from './services/marvel.service';
+import { MarvelAPI } from './persistence/marvel.api'
+import { CharacterService } from './services/character.service';
+import { ComicService } from './services/comic.service';
+import { FavouriteService } from './services/favourite.service';
 
 import { appReducer } from './app.reducer';
 
@@ -41,7 +44,10 @@ import { appReducer } from './app.reducer';
     StoreModule.forRoot(appReducer)
   ],
   providers: [
-    MarvelService
+    MarvelAPI,
+    CharacterService,
+    ComicService,
+    FavouriteService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Character } from '../models/character.model';
-import { MarvelService } from '../services/marvel.service';
+import { ComicService } from '../services/comic.service';
 
 @Component({
   selector: 'app-character-overview',
@@ -14,7 +14,7 @@ export class CharacterOverviewComponent implements OnInit {
   showComics: boolean
 
   constructor(
-    private marvelService: MarvelService,
+    private comicService: ComicService,
     public dialog: MatDialog
   ) {}
 
@@ -27,7 +27,7 @@ export class CharacterOverviewComponent implements OnInit {
   }
 
   openComicDialog(comicId: number) {
-    this.marvelService.dispatchComicById(comicId)
+    this.comicService.dispatchComicById(comicId)
     const dialogRef = this.dialog.open(ComicDetailComponent, {
       data: comicId
     });

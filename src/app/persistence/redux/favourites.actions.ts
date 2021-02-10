@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Comic } from "../models/comic.model";
+import { Comic } from "../../models/comic.model";
 
 export enum actionTypes {
     ADD_FAVOURITE_COMIC = '[Favourites] Add favourite comic',

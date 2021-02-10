@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Comic } from "../models/comic.model";
+import { Comic } from "../../models/comic.model";
 
 export enum actionTypes {
     SET_CURRENT_COMIC = '[Comic] Set current comic',

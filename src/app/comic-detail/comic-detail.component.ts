@@ -1,11 +1,12 @@
-import { AfterContentInit, AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, Subscription, from, BehaviorSubject } from 'rxjs';
-import { filter, map, isEmpty } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { Comic } from '../models/comic.model';
-import { MarvelService } from '../services/marvel.service';
+import { ComicService } from '../services/comic.service';
+import { FavouriteService } from '../services/favourite.service';
 
 @Component({
   selector: 'app-comic-detail',
@@ -16,25 +17,28 @@ export class ComicDetailComponent implements OnInit, OnDestroy {
   comic: Observable<Comic>
   favs: Comic[]
   isFavourite: boolean
-
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public comicId: number,
-    private marvelService: MarvelService,
+    private comicService: ComicService,
+    private favouriteService: FavouriteService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.comic = this.marvelService.getDispatchedComic()
+    this.comic = this.comicService.getDispatchedComic()
     this.favs = JSON.parse(localStorage.getItem('favourites'))
-    this.isFavourite = this.favs.map(e => e.id).includes(Number(this.comicId))
+    this.favouriteService.getDispatchedFavourites()
+    .pipe(map(e => e.map(x => x.id)),filter(e => e.includes(Number(this.comicId))))
+    .subscribe(ids => this.isFavourite = ids.includes(Number(this.comicId)))
   }
 
   addFavouriteComic(comic: Comic){
-    this.marvelService.dispatchFavouriteComic(comic)
+    this.favouriteService.dispatchFavouriteComic(comic)
     this.dialog.open(InfoDialogComponent, { data: 'The comic has been added to favourites successfully!'})
   }
 
   ngOnDestroy(): void {
-    this.marvelService.removeDispatchedComic()
+    this.comicService.removeDispatchedComic()
   }
 }

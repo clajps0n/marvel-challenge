@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Character } from "../models/character.model";
+import { Character } from "../../models/character.model";
 import * as character from './character.actions'
 
 export interface CharacterState {

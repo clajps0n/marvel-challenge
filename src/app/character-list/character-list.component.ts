@@ -1,10 +1,11 @@
-import { AfterContentInit, Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Character } from '../models/character.model';
-import { Comic } from '../models/comic.model';
-import { MarvelService } from '../services/marvel.service';
+import { CharacterService } from '../services/character.service';
+import { ComicService } from '../services/comic.service';
+import { FavouriteService } from '../services/favourite.service';
 
 @Component({
   selector: 'app-character-list',
@@ -23,12 +24,16 @@ export class CharacterListComponent implements OnInit, AfterContentInit, DoCheck
   oldPageIndex: number
   oldPageSize: number
 
-  constructor(private marvelService: MarvelService) { }
+  constructor(
+    private characterService: CharacterService,
+    private comicService: ComicService,
+    private favouriteService: FavouriteService
+    ) { }
 
   ngOnInit(): void {
-    this.marvelService.dispatchCharacterList('')
+    this.characterService.dispatchCharacterList('')
 
-    this.fullCharacterList = this.marvelService.getDispatchedCharacterList('')
+    this.fullCharacterList = this.characterService.getDispatchedCharacterList()
 
     this.fullCharacterList.subscribe(list => {
       this.listLength = list.length
@@ -55,10 +60,10 @@ export class CharacterListComponent implements OnInit, AfterContentInit, DoCheck
     
     randomIds.forEach(id => {
       if (id) {
-        this.marvelService.dispatchComicById(id)
-        this.marvelService.getDispatchedComic().subscribe(comic => {
+        this.comicService.dispatchComicById(id)
+        this.comicService.getDispatchedComic().subscribe(comic => {
           if (comic.id) {
-            this.marvelService.dispatchFavouriteComic(comic)
+            this.favouriteService.dispatchFavouriteComic(comic)
           }
         })
       }

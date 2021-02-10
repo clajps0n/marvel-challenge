@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comic } from '../models/comic.model';
-import { MarvelService } from '../services/marvel.service';
+import { FavouriteService } from '../services/favourite.service';
 
 @Component({
   selector: 'app-favourite-detail',
@@ -11,13 +11,13 @@ export class FavouriteDetailComponent implements OnInit {
   @Input() comic: Comic
 
   constructor(
-    private marvelService: MarvelService
+    private favouriteService: FavouriteService
   ) { }
 
   ngOnInit(): void {
   }
 
   removeFromFavourites(comicId: number){
-    this.marvelService.removeDispatchedFavourite(comicId)
+    this.favouriteService.removeDispatchedFavourite(comicId)
   }
 }

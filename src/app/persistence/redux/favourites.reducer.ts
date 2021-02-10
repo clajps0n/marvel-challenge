@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { addToFavourites, removeFromFavourites } from "../app.util";
-import { Comic } from "../models/comic.model";
+import { addToFavourites, removeFromFavourites } from "../../app.util";
+import { Comic } from "../../models/comic.model";
 import * as favourites from './favourites.actions'
 
 export interface FavouritesState {

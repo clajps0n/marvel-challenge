@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Character } from "../models/character.model";
+import { Character } from "../../models/character.model";
 
 export enum actionTypes {
     SET_CHARACTER_LIST = '[Comic] Set characters',

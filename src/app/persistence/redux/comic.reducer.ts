@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Comic } from "../models/comic.model";
+import { Comic } from "../../models/comic.model";
 import * as comicActions from './comic.actions'
 
 export interface ComicState {

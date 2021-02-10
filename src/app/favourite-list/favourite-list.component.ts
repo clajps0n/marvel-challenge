@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Comic } from '../models/comic.model';
-import { MarvelService } from '../services/marvel.service';
+import { FavouriteService } from '../services/favourite.service';
 
 @Component({
   selector: 'app-favourite-list',
@@ -13,15 +13,15 @@ export class FavouriteListComponent implements OnInit {
   favs: Comic[]
 
   constructor(
-    private marvelService: MarvelService
+    private favouriteService: FavouriteService
   ) { }
 
   ngOnInit(): void {
     this.favs = JSON.parse(localStorage.getItem('favourites'))
     this.favs.forEach((comic: Comic) => {
-      this.marvelService.dispatchFavouriteComic(comic)
+      this.favouriteService.dispatchFavouriteComic(comic)
     })
-    this.favouriteList = this.marvelService.getDispatchedFavourites()
+    this.favouriteList = this.favouriteService.getDispatchedFavourites()
   }
 
 }
