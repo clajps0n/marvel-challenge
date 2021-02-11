@@ -19,14 +19,13 @@ export class FavouriteListComponent implements OnInit {
   ngOnInit(): void {
     this.favs = JSON.parse(localStorage.getItem('favourites'))
     
-    if (!this.favs) {
-      localStorage.setItem('favourites', JSON.stringify([]))
-      this.favs = []
+    if(this.favs) {
+      this.favs.forEach((comic: Comic) => {
+        this.favouriteService.dispatchFavouriteComic(comic)
+      })
     }
+
     
-    this.favs.forEach((comic: Comic) => {
-      this.favouriteService.dispatchFavouriteComic(comic)
-    })
     this.favouriteList = this.favouriteService.getDispatchedFavourites()
   }
 
