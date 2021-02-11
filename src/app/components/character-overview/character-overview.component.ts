@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
-import { Character } from '../models/character.model';
-import { ComicService } from '../services/comic.service';
+import { Character } from '../../models/character.model';
+import { ComicService } from '../../services/comic.service';
 
 @Component({
   selector: 'app-character-overview',

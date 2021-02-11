@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Comic } from '../models/comic.model';
-import { FavouriteService } from '../services/favourite.service';
+import { Comic } from '../../models/comic.model';
+import { FavouriteService } from '../../services/favourite.service';
 
 @Component({
   selector: 'app-favourite-list',

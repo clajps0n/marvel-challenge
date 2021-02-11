@@ -2,10 +2,10 @@ import { AfterContentInit, Component, DoCheck, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Character } from '../models/character.model';
-import { CharacterService } from '../services/character.service';
-import { ComicService } from '../services/comic.service';
-import { FavouriteService } from '../services/favourite.service';
+import { Character } from '../../models/character.model';
+import { CharacterService } from '../../services/character.service';
+import { ComicService } from '../../services/comic.service';
+import { FavouriteService } from '../../services/favourite.service';
 
 @Component({
   selector: 'app-character-list',

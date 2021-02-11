@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CharacterService } from '../services/character.service';
+import { CharacterService } from '../../services/character.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -18,5 +18,6 @@ export class SearchBarComponent implements OnInit {
 
   onSubmit(form: FormGroup){
     this.characterService.dispatchCharacterList(form.value.character)
+    form.reset()
   }
 }

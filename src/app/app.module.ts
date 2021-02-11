@@ -7,14 +7,13 @@ import { StoreModule } from '@ngrx/store'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { CharacterListComponent } from './character-list/character-list.component';
-import { CharacterOverviewComponent } from './character-overview/character-overview.component';
-import { RelatedComicsComponent } from './related-comics/related-comics.component';
-import { ComicDetailComponent } from './comic-detail/comic-detail.component';
-import { FavouriteListComponent } from './favourite-list/favourite-list.component';
-import { FavouriteDetailComponent } from './favourite-detail/favourite-detail.component';
-import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { CharacterListComponent } from './components/character-list/character-list.component';
+import { CharacterOverviewComponent } from './components/character-overview/character-overview.component';
+import { ComicDetailComponent } from './components/comic-detail/comic-detail.component';
+import { FavouriteListComponent } from './components/favourite-list/favourite-list.component';
+import { FavouriteDetailComponent } from './components/favourite-detail/favourite-detail.component';
+import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
 
 import { MarvelAPI } from './persistence/marvel.api'
 import { CharacterService } from './services/character.service';
@@ -29,7 +28,6 @@ import { appReducer } from './app.reducer';
     SearchBarComponent,
     CharacterListComponent,
     CharacterOverviewComponent,
-    RelatedComicsComponent,
     ComicDetailComponent,
     FavouriteListComponent,
     FavouriteDetailComponent,

@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
-import { Comic } from '../models/comic.model';
-import { ComicService } from '../services/comic.service';
-import { FavouriteService } from '../services/favourite.service';
+import { Comic } from '../../models/comic.model';
+import { ComicService } from '../../services/comic.service';
+import { FavouriteService } from '../../services/favourite.service';
 
 @Component({
   selector: 'app-comic-detail',
