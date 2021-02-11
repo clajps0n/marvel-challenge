@@ -41,6 +41,7 @@ export class CharacterListComponent implements OnInit, AfterContentInit, DoCheck
     })
 
     this.oldPageIndex = 0
+    localStorage.setItem('favourites', JSON.stringify([]))
   }
 
   ngAfterContentInit(){
