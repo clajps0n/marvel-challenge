@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { addToFavourites, removeFromFavourites } from "../../app.util";
+import { addToFavourites, removeFromFavourites } from "../local-storage";
 import { Comic } from "../../models/comic.model";
 import * as favourites from './favourites.actions'
 

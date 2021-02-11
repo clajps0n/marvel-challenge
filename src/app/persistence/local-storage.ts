@@ -1,4 +1,4 @@
-import { Comic } from "./models/comic.model";
+import { Comic } from "../models/comic.model";
 
 export const  addToFavourites = (favourites: Comic[], newComic: Comic) => {
     if(favourites.length < 5){
