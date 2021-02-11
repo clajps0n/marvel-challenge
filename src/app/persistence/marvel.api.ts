@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { environment }  from '../../environments/environment'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MarvelAPI {
   private auth = `&apikey=${environment.marvelApikey}&hash=${environment.marvelHash}`
 
