@@ -31,9 +31,5 @@ export class CharacterOverviewComponent implements OnInit {
     const dialogRef = this.dialog.open(ComicDetailComponent, {
       data: comicId
     });
-
-    dialogRef.afterClosed().subscribe(() => {
-      console.log(`Dialog closed`);
-    });
   }
 }

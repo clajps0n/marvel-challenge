@@ -21,10 +21,6 @@ export class FavouriteService {
     return this.store.select(fromFavourites.getFavouritesStateSelector)
   }
 
-  getIfComicInFavourites(comicId: number): Observable<Comic[]> {
-    return this.store.select(fromFavourites.getFavouritesStateSelector)
-  }
-
   removeDispatchedFavourite(comicId: number): void {
     this.store.dispatch(new RemoveFavouriteComic(comicId))
   }
